@@ -1,0 +1,32 @@
+{
+  "name": "maj",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "bin": {
+    "maj": "bin/maj.js"
+  },
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev",
+    "format": "prettier --write .",
+    "start": "cd demo && pnpm run start"
+  },
+  "dependencies": {
+    "@umijs/bundler-utils": "^4.2.11",
+    "@umijs/core": "^4.2.11",
+    "@umijs/mako": "^0.6.0",
+    "@umijs/preset-umi": "^4.2.11",
+    "@umijs/utils": "^4.2.11",
+    "cac": "^6.7.14"
+  },
+  "devDependencies": {
+    "father": "^4.4.4",
+    "prettier": "^2.5.1",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.5.0"
+  }
+}
