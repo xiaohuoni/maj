@@ -30,7 +30,7 @@ export default class Model extends Module {
 
     // runtime.tsx
     this.writeTmpFile({
-      path: 'model/runtime.tsx',
+      path: 'runtime.tsx',
       content: `
 import React  from 'react';
 import { Provider } from './';

@@ -1,4 +1,4 @@
-import { ProviderWrapper } from '@@/model/runtime';
+import { ProviderWrapper } from '@@/plugin-model/runtime';
 import routes from '@@/routes';
 import { Suspense } from 'react';
 import { HashRouter, Link, Route, Routes } from 'react-router-dom';

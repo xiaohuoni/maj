@@ -1,4 +1,4 @@
-import { useModel } from '@@/model/index';
+import { useModel } from '@@/plugin-model/index';
 function ModelPage() {
   const { todos, addTodos } = useModel('todo');
   return (
