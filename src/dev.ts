@@ -1,47 +1,29 @@
 import { build } from '@umijs/mako';
-import { join } from 'path';
-import routes from './mako-plugins/routes';
-import { registerMakoPlugin } from './utils/mako-plugins';
+import { Plugins } from './plugins/Plugins';
 import { Paths } from './utils/path';
 export interface DevConfig {
   paths: Paths;
   watch?: boolean;
+  plugins: Plugins;
 }
 
 export async function dev({
   paths,
   watch = process.argv.includes('--watch'),
+  plugins,
 }: DevConfig): Promise<any> {
-  const { cwd, absPagesPath, absSrcPath } = paths;
-  const routerPath = join(absSrcPath, './routes.ts');
+  const { cwd } = paths;
 
   build({
     root: cwd,
     config: {
-      plugins: [
-        registerMakoPlugin({
-          config: {
-            paths: {
-              absSrcPath,
-              routerPath,
-              absPagesPath,
-            },
-            conventionRoutes: {
-              // 规定只有index文件会被识别成路由
-              exclude: [
-                /(?<!(index|\[index\]|404)(\.(js|jsx|ts|tsx)))$/,
-                /model\.(j|t)sx?$/,
-                /\.test\.(j|t)sx?$/,
-                /service\.(j|t)sx?$/,
-                /models\//,
-                /components\//,
-                /services\//,
-              ],
-            },
-          },
-          plugin: routes,
-        }),
-      ],
+      resolve: {
+        alias: {
+          '@': './src',
+          '@@': './src/.maj',
+        },
+      },
+      plugins: plugins.getMakoPlugin(),
     },
     watch,
   }).catch((e) => {

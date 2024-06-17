@@ -1,19 +1,19 @@
 import { cac } from 'cac';
 import { VERSION } from './constants';
+import { Plugins } from './plugins/Plugins';
+import Model from './plugins/model';
+import Routes from './plugins/routes';
 import { getPaths } from './utils/path';
+
 const cli = cac('maj');
 
-// global options
-interface GlobalCLIOptions {
-  '--'?: string[];
-}
 // process.env.NODE_ENV = 'development';
 // process.env.NODE_ENV = 'production';
 // dev
 cli
   .command('dev', '开发服务')
   .alias('start')
-  .action(async (root: string, options: GlobalCLIOptions) => {
+  .action(async () => {
     console.log('start dev');
     const { dev } = require('./dev');
     try {
@@ -22,7 +22,10 @@ cli
         env: 'development' as any,
         prefix: 'maj',
       });
-      await dev({ paths, watch: true });
+      // plugins
+      const plugins = new Plugins({ paths, modules: [Routes, Model] });
+      plugins.setup();
+      await dev({ paths, watch: true, plugins });
     } catch (e) {
       console.error(e);
       process.exit(1);

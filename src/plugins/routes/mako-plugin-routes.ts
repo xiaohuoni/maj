@@ -3,12 +3,11 @@ import { getRoutes } from '@umijs/preset-umi/dist/features/tmpFiles/routes';
 
 export default {
   name: 'routes',
-  load: async function load(path: string, config): Promise<any> {
-    const { paths } = config;
-    const { absPagesPath, absSrcPath, routerPath } = paths;
+  load: async function load(path: string, config: any): Promise<any> {
+    const { paths, routerPath } = config;
     const api: any = {
       userConfig: {},
-      applyPlugins: ({ initialValue }) => initialValue,
+      applyPlugins: ({ initialValue }: any) => initialValue,
       config,
       paths,
     };
