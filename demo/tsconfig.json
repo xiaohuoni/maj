@@ -11,7 +11,7 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "sourceMap": true,
-    "baseUrl": "../../",
+    "baseUrl": ".",
     "strict": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,

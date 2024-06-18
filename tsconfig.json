@@ -10,7 +10,12 @@
     "skipLibCheck": true,
     "target": "es2019",
     "jsx": "react",
-    "lib": ["dom", "dom.iterable", "esnext"]
+    "baseUrl": ".",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "paths": {
+      "@/*": ["demo/src/*"],
+      "@@/*": ["demo/src/.maj/*"]
+    }
   },
   "exclude": ["**/node_modules", "**/dist"]
 }

@@ -1,0 +1,11 @@
+node_modules
+dist
+.maj
+*.png
+*.jpg
+*.svg
+.editorconfig
+.prettierignore
+.gitkeep
+.DS_Store
+.gitignore

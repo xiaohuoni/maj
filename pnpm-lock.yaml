@@ -44,6 +44,12 @@ importers:
 
   demo:
     dependencies:
+      '@alita/request':
+        specifier: ^3.1.2
+        version: 3.1.2
+      ahooks:
+        specifier: ^3.8.0
+        version: 3.8.0(react@18.3.1)
       maj:
         specifier: workspace:*
         version: link:..
@@ -65,6 +71,15 @@ importers:
         version: 18.3.0
 
 packages:
+  /@alita/request@3.1.2:
+    resolution:
+      {
+        integrity: sha512-dfe85weKdsH1Ya93CoWIauLaFE+5aQ7jCr+iR255rpsgq5LVSVgWUCF1byBlN7qWoupJdL7sS6mB0Hi2++xL2g==,
+      }
+    dependencies:
+      umi-request: 1.4.0
+    dev: false
+
   /@ampproject/remapping@2.3.0:
     resolution:
       {
@@ -2822,6 +2837,27 @@ packages:
     engines: { node: '>=0.4.0' }
     hasBin: true
 
+  /ahooks@3.8.0(react@18.3.1):
+    resolution:
+      {
+        integrity: sha512-M01m+mxLRNNeJ/PCT3Fom26UyreTj6oMqJBetUrJnK4VNI5j6eMA543Xxo53OBXn6XibA2FXKcCCgrT6YCTtKQ==,
+      }
+    engines: { node: '>=8.0.0' }
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.23.6
+      dayjs: 1.11.11
+      intersection-observer: 0.12.2
+      js-cookie: 2.2.1
+      lodash: 4.17.21
+      react: 18.3.1
+      react-fast-compare: 3.2.2
+      resize-observer-polyfill: 1.5.1
+      screenfull: 5.2.0
+      tslib: 2.6.2
+    dev: false
+
   /ajv-keywords@3.5.2(ajv@6.12.6):
     resolution:
       {
@@ -3956,6 +3992,13 @@ packages:
       es-errors: 1.3.0
       is-data-view: 1.0.1
 
+  /dayjs@1.11.11:
+    resolution:
+      {
+        integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==,
+      }
+    dev: false
+
   /debug@2.6.9:
     resolution:
       {
@@ -4245,6 +4288,15 @@ packages:
         integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==,
       }
     engines: { node: '>= 0.8' }
+    dev: false
+
+  /encoding@0.1.13:
+    resolution:
+      {
+        integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==,
+      }
+    dependencies:
+      iconv-lite: 0.6.3
     dev: false
 
   /end-of-stream@1.4.4:
@@ -5416,7 +5468,6 @@ packages:
     dependencies:
       safer-buffer: 2.1.2
     dev: false
-    optional: true
 
   /icss-utils@5.1.0(postcss@8.4.38):
     resolution:
@@ -5512,6 +5563,13 @@ packages:
       es-errors: 1.3.0
       hasown: 2.0.2
       side-channel: 1.0.6
+
+  /intersection-observer@0.12.2:
+    resolution:
+      {
+        integrity: sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==,
+      }
+    dev: false
 
   /invariant@2.2.4:
     resolution:
@@ -5779,6 +5837,14 @@ packages:
     dependencies:
       call-bind: 1.0.7
 
+  /is-stream@1.1.0:
+    resolution:
+      {
+        integrity: sha512-uQPm8kcs47jx38atAcWTVxyltQYoPT68y9aWYdV6yWXSyW8mzSat0TL6CiWdZeCdF3KrAvpVtnHbTv4RN+rqdQ==,
+      }
+    engines: { node: '>=0.10.0' }
+    dev: false
+
   /is-stream@2.0.1:
     resolution:
       {
@@ -5882,6 +5948,16 @@ packages:
       }
     dev: false
 
+  /isomorphic-fetch@2.2.1:
+    resolution:
+      {
+        integrity: sha512-9c4TNAKYXM5PRyVcwUZrF3W09nQ+sO7+jydgs4ZGW9dhsLG2VOlISJABombdQqQRXCwuYG3sYV/puGf5rp0qmA==,
+      }
+    dependencies:
+      node-fetch: 1.7.3
+      whatwg-fetch: 3.6.20
+    dev: false
+
   /jackspeak@3.4.0:
     resolution:
       {
@@ -5944,6 +6020,13 @@ packages:
         integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==,
       }
     dev: true
+
+  /js-cookie@2.2.1:
+    resolution:
+      {
+        integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==,
+      }
+    dev: false
 
   /js-tokens@4.0.0:
     resolution:
@@ -6546,6 +6629,16 @@ packages:
       {
         integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==,
       }
+
+  /node-fetch@1.7.3:
+    resolution:
+      {
+        integrity: sha512-NhZ4CsKx7cYm2vSrBAr2PvFOe6sWDf0UYLRqA6svUYg7+/TSfVAu49jYC4BvQ4Sms9SZgdqGBgroqfDhJdTyKQ==,
+      }
+    dependencies:
+      encoding: 0.1.13
+      is-stream: 1.1.0
+    dev: false
 
   /node-libs-browser-okam@2.2.5:
     resolution:
@@ -8080,6 +8173,13 @@ packages:
       }
     dev: true
 
+  /resize-observer-polyfill@1.5.1:
+    resolution:
+      {
+        integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==,
+      }
+    dev: false
+
   /resolve-from@4.0.0:
     resolution:
       {
@@ -8267,6 +8367,14 @@ packages:
       '@types/json-schema': 7.0.15
       ajv: 6.12.6
       ajv-keywords: 3.5.2(ajv@6.12.6)
+
+  /screenfull@5.2.0:
+    resolution:
+      {
+        integrity: sha512-9BakfsO2aUQN2K9Fdbj87RJIEZ82Q9IGim7FqM5OsebfoFC6ZHXgDq/KvniuLTPdeM8wY2o6Dj3WQ7KeQCj3cA==,
+      }
+    engines: { node: '>=0.10.0' }
+    dev: false
 
   /select-hose@2.0.0:
     resolution:
@@ -9119,6 +9227,16 @@ packages:
     engines: { node: '>=14.17' }
     hasBin: true
 
+  /umi-request@1.4.0:
+    resolution:
+      {
+        integrity: sha512-OknwtQZddZHi0Ggi+Vr/olJ7HNMx4AzlywyK0W3NZBT7B0stjeZ9lcztA85dBgdAj3KVk8uPJPZSnGaDjELhrA==,
+      }
+    dependencies:
+      isomorphic-fetch: 2.2.1
+      qs: 6.12.1
+    dev: false
+
   /unbox-primitive@1.0.2:
     resolution:
       {
@@ -9410,6 +9528,13 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
+
+  /whatwg-fetch@3.6.20:
+    resolution:
+      {
+        integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==,
+      }
+    dev: false
 
   /which-boxed-primitive@1.0.2:
     resolution:
