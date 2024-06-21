@@ -12,7 +12,6 @@ export default class Model extends Module {
   async generateFiles() {
     // model
     const models = await getAllModels(this.paths);
-    console.log(models);
 
     // model.ts
     this.writeTmpFile({

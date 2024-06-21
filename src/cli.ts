@@ -1,6 +1,7 @@
 import { cac } from 'cac';
 import { VERSION } from './constants';
 import { Plugins } from './plugins/Plugins';
+import Keepalive from './plugins/keepalive';
 import Model from './plugins/model';
 import Routes from './plugins/routes';
 import { getPaths } from './utils/path';
@@ -23,7 +24,10 @@ cli
         prefix: 'maj',
       });
       // plugins
-      const plugins = new Plugins({ paths, modules: [Routes, Model] });
+      const plugins = new Plugins({
+        paths,
+        modules: [Routes, Model, Keepalive],
+      });
       plugins.setup();
       await dev({ paths, watch: true, plugins });
     } catch (e) {
