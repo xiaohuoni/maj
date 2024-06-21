@@ -5,16 +5,14 @@ import http from 'http';
 import { logger } from '@umijs/utils';
 import { getRandomPort } from 'get-port-please';
 import { getDevBanner } from './utils/getDevBanner';
-import { Paths } from './utils/path';
 import { createMockMiddleware } from './utils/umiMock/createMockMiddleware';
 import { getMockData } from './utils/umiMock/getMockData';
 
 export interface MockConfig {
   mockDir: string;
-  paths: Paths;
 }
 
-export async function mock({ paths, mockDir }: MockConfig): Promise<any> {
+export async function mock({ mockDir }: MockConfig): Promise<any> {
   const app = express();
 
   // cros
