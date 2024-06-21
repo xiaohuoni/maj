@@ -1,8 +1,8 @@
-import { KeepAliveLayout, useKeepOutlets } from '@@/plugin-keepalive';
-import { ProviderWrapper } from '@@/plugin-model/runtime';
-import routes from '@@/routes';
 import { Suspense } from 'react';
 import { HashRouter, Link, useRoutes } from 'react-router-dom';
+import { KeepAliveLayout, useKeepOutlets } from './.maj/plugin-keepalive';
+import { ProviderWrapper } from './.maj/plugin-model/runtime';
+import routes from './.maj/routes';
 function Layout() {
   const outlets = useKeepOutlets();
   return <>{outlets}</>;
@@ -29,7 +29,7 @@ function App() {
           <p>Routes:</p>
           <ul>
             {routes.map((route) => (
-              <li>
+              <li key={route.path}>
                 <Link to={route.path} key={route.path}>
                   {route.path}
                 </Link>

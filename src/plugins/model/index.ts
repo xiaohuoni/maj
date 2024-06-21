@@ -1,4 +1,4 @@
-import { winPath } from '@umijs/utils';
+// import { winPath } from '@umijs/utils';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { Module } from '../Module';
@@ -23,7 +23,8 @@ export default class Model extends Module {
     const indexContent = readFileSync(
       join(__dirname, '../../../templates/model.tsx'),
       'utf-8',
-    ).replace('fast-deep-equal', winPath(require.resolve('fast-deep-equal')));
+    );
+    // .replace('fast-deep-equal', winPath(require.resolve('fast-deep-equal')));
 
     this.writeTmpFile({ path: 'index.tsx', content: indexContent });
 

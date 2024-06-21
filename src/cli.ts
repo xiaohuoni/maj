@@ -35,6 +35,32 @@ cli
     } finally {
     }
   });
+
+// dev
+cli
+  .command('build', '构建项目')
+  .alias('b')
+  .action(async () => {
+    const { build } = require('./build');
+    try {
+      const paths = getPaths({
+        cwd: process.cwd(),
+        env: 'production' as any,
+        prefix: 'maj',
+      });
+      // plugins
+      const plugins = new Plugins({
+        paths,
+        modules: [Routes, Model, Keepalive],
+      });
+      plugins.setup();
+      await build({ paths, plugins });
+    } catch (e) {
+      console.error(e);
+      process.exit(1);
+    } finally {
+    }
+  });
 // mock
 cli
   .command('mock', '静态数据服务')

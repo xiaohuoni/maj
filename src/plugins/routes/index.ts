@@ -35,7 +35,7 @@ export default class Routes extends Module {
       .map((key) => {
         const r = routes[key];
         return `{ path: '/${r.path}', component: lazy(async () => {
-              return await import('${r.__absFile}');
+              return await import('../pages/${r.file}');
             })}`;
       })
       .join(',');
