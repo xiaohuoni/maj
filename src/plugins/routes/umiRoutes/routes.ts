@@ -1,12 +1,12 @@
-import {
-  addParentRoute,
-  getConfigRoutes,
-  getConventionRoutes,
-} from '@umijs/core';
 import { isMonorepo, lodash, resolve, tryPaths, winPath } from '@umijs/utils';
 import { existsSync, readFileSync } from 'fs';
 import { isAbsolute, join } from 'path';
 import { getModuleExports } from './getModuleExports';
+import {
+  addParentRoute,
+  getConfigRoutes,
+  getConventionRoutes,
+} from './route/route';
 
 // get api routes
 export async function getApiRoutes(opts: { api: any }) {
