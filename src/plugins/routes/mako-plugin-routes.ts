@@ -1,5 +1,5 @@
 import { JsHooks } from '@umijs/mako/binding';
-import { getRoutes } from '@umijs/preset-umi/dist/features/tmpFiles/routes';
+import { getRoutes } from './umiRoutes/routes';
 
 export default {
   name: 'routes',
@@ -17,7 +17,7 @@ export default {
       const routesStr = Object.keys(routes)
         .map((key) => {
           const r = routes[key];
-          return `{ path: '${r.path}', component: lazy(async () => {
+          return `{ path: '/${r.path}', component: lazy(async () => {
               return await import('${r.__absFile}');
             })}`;
         })
