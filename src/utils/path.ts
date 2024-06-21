@@ -8,7 +8,7 @@ export enum Env {
   test = 'test',
 }
 
-function winJoin(...args: string[]) {
+export function winJoin(...args: string[]) {
   return winPath(join(...args));
 }
 

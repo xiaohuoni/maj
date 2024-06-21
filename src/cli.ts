@@ -4,7 +4,7 @@ import { Plugins } from './plugins/Plugins';
 import Keepalive from './plugins/keepalive';
 import Model from './plugins/model';
 import Routes from './plugins/routes';
-import { getPaths } from './utils/path';
+import { getPaths, winJoin } from './utils/path';
 
 const cli = cac('maj');
 
@@ -15,7 +15,6 @@ cli
   .command('dev', '开发服务')
   .alias('start')
   .action(async () => {
-    console.log('start dev');
     const { dev } = require('./dev');
     try {
       const paths = getPaths({
@@ -30,6 +29,27 @@ cli
       });
       plugins.setup();
       await dev({ paths, watch: true, plugins });
+    } catch (e) {
+      console.error(e);
+      process.exit(1);
+    } finally {
+    }
+  });
+// mock
+cli
+  .command('mock', '静态数据服务')
+  .option('--mockDir <dir>', `[string] mock directory (default: mock)`)
+  .action(async (options) => {
+    const { mockDir } = options;
+    const { mock } = require('./mock');
+    try {
+      const dir = winJoin(process.cwd(), mockDir || 'mock');
+      const paths = getPaths({
+        cwd: process.cwd(),
+        env: 'development' as any,
+        prefix: 'maj',
+      });
+      await mock({ paths, mockDir: dir });
     } catch (e) {
       console.error(e);
       process.exit(1);

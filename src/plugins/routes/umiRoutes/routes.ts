@@ -42,7 +42,7 @@ export async function getApiRoutes(opts: { api: any }) {
 
 // get route config
 export async function getRoutes(opts: {
-  api: IApi;
+  api: any;
 }): Promise<Record<string, any>> {
   let routes = null;
   if (opts.api.config.routes) {
@@ -200,7 +200,7 @@ const IMPORT_EMPTY_ROUTE_ESM = `() => import('./EmptyRoute')`;
 export async function getRouteComponents(opts: {
   routes: Record<string, any>;
   prefix: string;
-  api: IApi;
+  api: any;
 }) {
   const imports = Object.keys(opts.routes)
     .map((key) => {

@@ -25,11 +25,17 @@ function App() {
     <div>
       <HashRouter>
         <ProviderWrapper>
-          {routes.map((route) => (
-            <Link to={route.path} key={route.path}>
-              {route.path}
-            </Link>
-          ))}
+          <p>That pages state is keepalive!</p>
+          <p>Routes:</p>
+          <ul>
+            {routes.map((route) => (
+              <li>
+                <Link to={route.path} key={route.path}>
+                  {route.path}
+                </Link>
+              </li>
+            ))}
+          </ul>
           <KeepAliveLayout>
             <Suspense>
               <Routes />
