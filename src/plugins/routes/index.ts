@@ -1,7 +1,5 @@
-import { join } from 'path';
-import { registerMakoPlugin } from '../../utils/mako-plugins';
 import { Module } from '../Module';
-import routesMakoPlugin from './mako-plugin-routes';
+import { getRoutes } from './umiRoutes/routes';
 
 const ROUTES_PATH_NAME = 'routes.ts';
 
@@ -11,22 +9,11 @@ export default class Routes extends Module {
     this.name = 'routes';
   }
   async generateFiles() {
-    // 为什么要写一个空文件？
-    // 通过 mako 监听变更，不用重新 reset
-    // 理由不充分，刚开始写的是 mako 插件，觉得很酷，就先保留
-    this.writeTmpFile({
-      path: ROUTES_PATH_NAME,
-      noPluginDir: true,
-      content: 'export default [] as { path: string; component: any }[];',
-    });
-  }
-
-  getMakoPlugin() {
-    const routerPath = join(this.paths.absTmpPath, ROUTES_PATH_NAME);
-    return registerMakoPlugin({
+    const api: any = {
+      userConfig: {},
+      applyPlugins: ({ initialValue }: any) => initialValue,
       config: {
         paths: this.paths,
-        routerPath,
         conventionRoutes: {
           // 规定只有index文件会被识别成路由
           exclude: [
@@ -40,7 +27,27 @@ export default class Routes extends Module {
           ],
         },
       },
-      plugin: routesMakoPlugin,
+      paths: this.paths,
+    };
+    // routes
+    const routes = await getRoutes({ api });
+    const routesStr = Object.keys(routes)
+      .map((key) => {
+        const r = routes[key];
+        return `{ path: '/${r.path}', component: lazy(async () => {
+              return await import('${r.__absFile}');
+            })}`;
+      })
+      .join(',');
+
+    this.writeTmpFile({
+      path: ROUTES_PATH_NAME,
+      noPluginDir: true,
+      content: `
+          import { lazy } from "react";
+          const routes = [${routesStr}];
+          export default routes;
+          `,
     });
   }
 }
