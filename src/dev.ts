@@ -7,15 +7,10 @@ import { Paths, winJoin } from './utils/path';
 
 export interface DevConfig {
   paths: Paths;
-  watch?: boolean;
   plugins: Plugins;
 }
 
-export async function dev({
-  paths,
-  watch = process.argv.includes('--watch'),
-  plugins,
-}: DevConfig): Promise<any> {
+export async function dev({ paths, plugins }: DevConfig): Promise<any> {
   const { cwd } = paths;
   const { app, server, port, host } = await mock({
     mockDir: winJoin(cwd, 'mock'),
@@ -56,7 +51,7 @@ export async function dev({
       mode: 'development',
       devtool: 'source-map',
     },
-    watch,
+    watch: true,
   }).catch((e) => {
     console.error(e);
     process.exit(1);

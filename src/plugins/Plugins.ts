@@ -5,7 +5,9 @@ import { Module } from './Module';
 export class Plugins {
   public paths: Paths;
   public name: string = '';
+  public cliName: string = '';
   public modules: Module[];
+
   constructor({
     paths,
     modules = [],
@@ -17,16 +19,25 @@ export class Plugins {
 
     this.modules = modules.map((M: typeof Module) => {
       // @ts-ignore
-      return new M({ paths });
+      return new M({ paths, getCliName: this.getCliName.bind(this) });
     });
   }
+  getCliName() {
+    return this.cliName;
+  }
+  setCliName(cli: string) {
+    this.cliName = cli;
+  }
+  getModules() {
+    return this.modules;
+  }
   setup() {
-    this.modules.forEach((mod) => {
+    this.getModules().forEach((mod) => {
       mod.setup();
     });
   }
   getMakoPlugin(): JsHooks[] {
-    return this.modules
+    return this.getModules()
       .map((mod) => {
         return mod.getMakoPlugin();
       })
