@@ -19,6 +19,7 @@ export async function build({ paths, plugins }: BuildConfig): Promise<any> {
       },
       plugins: plugins.getMakoPlugin(),
       mode: 'production',
+      devtool: false,
     },
 
     watch: false,

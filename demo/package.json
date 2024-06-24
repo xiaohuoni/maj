@@ -10,9 +10,11 @@
     "analyze": "source-map-explorer 'dist/*.js'",
     "analyze:cra": "source-map-explorer 'build/static/js/*.js'",
     "build": "maj build",
-    "build:cra": "ANALYZE=true react-scripts build",
+    "build:cra": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build:vite": "tsc -b && vite build",
     "start": "maj dev",
-    "start:cra": "react-scripts start"
+    "start:cra": "react-scripts start",
+    "start:vite": "vite"
   },
   "browserslist": {
     "production": [
@@ -37,8 +39,10 @@
   "devDependencies": {
     "@types/react": "^18.2.52",
     "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.3.1",
     "maj": "workspace:*",
     "react-scripts": "5.0.1",
-    "source-map-explorer": "^2.5.3"
+    "source-map-explorer": "^2.5.3",
+    "vite": "^5.3.1"
   }
 }
