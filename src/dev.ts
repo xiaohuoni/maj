@@ -53,6 +53,7 @@ export async function dev({
       },
       devServer: { port: hmrPort, host },
       plugins: plugins.getMakoPlugin(),
+      mode: 'development',
     },
     watch,
   }).catch((e) => {
