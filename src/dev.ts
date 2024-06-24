@@ -48,8 +48,7 @@ export async function dev({
     config: {
       resolve: {
         alias: {
-          '@': './src',
-          '@@': './src/.maj',
+          src: './src',
         },
       },
       devServer: { port: hmrPort, host },

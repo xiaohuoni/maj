@@ -36,7 +36,6 @@ cli
     }
   });
 
-// dev
 cli
   .command('build', '构建项目')
   .alias('b')
@@ -45,7 +44,7 @@ cli
     try {
       const paths = getPaths({
         cwd: process.cwd(),
-        env: 'production' as any,
+        env: 'development' as any,
         prefix: 'maj',
       });
       // plugins

@@ -7,20 +7,38 @@
   "author": "",
   "main": "index.js",
   "scripts": {
+    "analyze": "source-map-explorer 'dist/*.js'",
+    "analyze:cra": "source-map-explorer 'build/static/js/*.js'",
     "build": "maj build",
-    "start": "maj dev"
+    "build:cra": "ANALYZE=true react-scripts build",
+    "start": "maj dev",
+    "start:cra": "react-scripts start"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "dependencies": {
     "@alita/request": "^3.1.2",
     "ahooks": "^3.8.0",
     "fast-deep-equal": "^3.1.3",
-    "maj": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.52",
-    "@types/react-dom": "^18.2.18"
+    "@types/react-dom": "^18.2.18",
+    "maj": "workspace:*",
+    "react-scripts": "5.0.1",
+    "source-map-explorer": "^2.5.3"
   }
 }

@@ -10,7 +10,7 @@ import {
 } from '@umijs/bundler-utils/compiled/esbuild';
 import { chalk, glob, winPath } from '@umijs/utils';
 import { readFileSync } from 'fs';
-import { basename, dirname, extname, format, join, relative } from 'path';
+import { basename, extname, join, relative } from 'path';
 import { Paths } from '../../utils/path';
 import { getIdentifierDeclaration } from './astUtils';
 interface IOpts {
@@ -283,12 +283,15 @@ export class ModelUtils {
     const imports: string[] = [];
     const modelProps: string[] = [];
     models.forEach((model) => {
-      const fileWithoutExt = winPath(
-        format({
-          dir: dirname(model.file),
-          base: basename(model.file, extname(model.file)),
-        }),
-      );
+      const base = basename(model.file, extname(model.file));
+      // const fileWithoutExt = winPath(
+      //   format({
+      //     dir: dirname(model.file),
+      //     base: basename(model.file, extname(model.file)),
+      //   }),
+      // );
+      // TODO: 相对路径
+      const fileWithoutExt = winPath(`src/models/${base}`);
       if (model.exportName !== 'default') {
         imports.push(
           `import { ${model.exportName} as ${model.id} } from '${fileWithoutExt}';`,

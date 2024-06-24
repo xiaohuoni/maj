@@ -15,7 +15,8 @@
     "dev": "father dev",
     "format": "prettier --write .",
     "mock": "npx maj mock",
-    "start": "cd demo && pnpm run start"
+    "start": "cd demo && pnpm run start",
+    "start:cra": "cd demo && pnpm run start:cra"
   },
   "dependencies": {
     "@umijs/bundler-utils": "^4.2.11",

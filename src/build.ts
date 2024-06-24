@@ -14,8 +14,7 @@ export async function build({ paths, plugins }: BuildConfig): Promise<any> {
     config: {
       resolve: {
         alias: {
-          '@': './src',
-          '@@': './src/.maj-production',
+          src: './src',
         },
       },
       plugins: plugins.getMakoPlugin(),

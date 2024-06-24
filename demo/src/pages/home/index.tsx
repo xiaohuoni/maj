@@ -1,6 +1,6 @@
-import { fakeAnalysisChartData } from '@/services/api';
 import { useRequest } from 'ahooks';
 import { useState } from 'react';
+import { fakeAnalysisChartData } from 'src/services/api';
 
 function HomePage() {
   const { loading, data } = useRequest(fakeAnalysisChartData);

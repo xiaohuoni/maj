@@ -2,3 +2,4 @@ node_modules
 dist
 .maj
 .maj-production
+demo/build

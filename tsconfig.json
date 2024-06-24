@@ -13,8 +13,7 @@
     "baseUrl": ".",
     "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
-      "@/*": ["demo/src/*"],
-      "@@/*": ["demo/src/.maj/*"]
+      "src/*": ["demo/src/*"]
     }
   },
   "exclude": ["**/node_modules", "**/dist"]
