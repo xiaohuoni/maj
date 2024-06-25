@@ -1,7 +1,7 @@
 import { useRequest } from 'ahooks';
+import { Button } from 'antd-mobile';
 import { useState } from 'react';
 import { fakeAnalysisChartData } from 'src/services/api';
-import { Button } from 'antd-mobile';
 function HomePage() {
   const { loading, data } = useRequest(fakeAnalysisChartData);
   const [count, setCount] = useState(0);

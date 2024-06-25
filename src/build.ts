@@ -15,8 +15,11 @@ export async function build({ paths, plugins }: BuildConfig): Promise<any> {
       resolve: {
         alias: {
           src: './src',
+          'antd-mobile': 'antd-mobile/2x',
         },
       },
+      // TODO: useConfig
+      px2rem: {},
       plugins: plugins.getMakoPlugin(),
       mode: 'production',
       devtool: false,

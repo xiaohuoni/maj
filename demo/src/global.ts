@@ -1,5 +1,5 @@
 import { OnionMiddleware, setRequestConfig } from '@alita/request';
-
+import 'src/.maj/hd/hd';
 const middleware: OnionMiddleware = async (ctx, next) => {
   await next();
   const { data } = ctx.res;

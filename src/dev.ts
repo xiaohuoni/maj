@@ -44,8 +44,12 @@ export async function dev({ paths, plugins }: DevConfig): Promise<any> {
       resolve: {
         alias: {
           src: './src',
+          // TODO: useConfig
+          'antd-mobile': 'antd-mobile/2x',
         },
       },
+      // TODO: useConfig
+      px2rem: {},
       devServer: { port: hmrPort, host },
       plugins: plugins.getMakoPlugin(),
       mode: 'development',

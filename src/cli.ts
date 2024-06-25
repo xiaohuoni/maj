@@ -2,6 +2,7 @@ import { cac } from 'cac';
 import { VERSION } from './constants';
 import { Plugins } from './plugins/Plugins';
 import Aconsole from './plugins/aconsole';
+import Hd from './plugins/hd';
 import Keepalive from './plugins/keepalive';
 import Model from './plugins/model';
 import Routes from './plugins/routes';
@@ -20,7 +21,7 @@ const paths = getPaths({
 // plugins
 const plugins = new Plugins({
   paths,
-  modules: [Routes, Model, Keepalive, Aconsole],
+  modules: [Routes, Model, Keepalive, Aconsole, Hd],
 });
 plugins.setCliName(command);
 // process.env.NODE_ENV = 'development';
