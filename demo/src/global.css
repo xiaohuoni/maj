@@ -105,3 +105,8 @@ textarea:disabled,
 input:disabled {
   background-color: transparent;
 }
+
+.vc-switch {
+  right: 0px;
+  bottom: calc(env(safe-area-inset-bottom) + 1.2rem) !important;
+}
