@@ -50,7 +50,7 @@ function Executor(props: ExecutorProps) {
     data = hook();
   } catch (e) {
     console.error(
-      `plugin-model: Invoking '${namespace || 'unknown'}' model failed:`,
+      `model: Invoking '${namespace || 'unknown'}' model failed:`,
       e,
     );
   }

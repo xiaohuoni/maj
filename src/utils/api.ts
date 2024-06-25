@@ -20,7 +20,7 @@ export const writeTmpFile = (opts: WriteTmpFileOptions) => {
   const { absTmpPath } = opts.paths;
   const absPath = join(
     absTmpPath,
-    !opts.noPluginDir ? `plugin-${opts.name}` : '',
+    !opts.noPluginDir ? opts.name : '',
     opts.path,
   );
   fsExtra.mkdirpSync(dirname(absPath));

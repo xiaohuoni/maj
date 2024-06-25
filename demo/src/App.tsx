@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { HashRouter, Link, useRoutes } from 'react-router-dom';
-import { _InspxContainer } from 'src/.maj/plugin-aconsole/inspx';
-import { KeepAliveLayout, useKeepOutlets } from './.maj/plugin-keepalive';
-import { ProviderWrapper } from './.maj/plugin-model/runtime';
-import routes from './.maj/routes';
+import { _InspxContainer } from 'src/.maj/aconsole/inspx';
+import { KeepAliveLayout, useKeepOutlets } from 'src/.maj/keepalive';
+import { ProviderWrapper } from 'src/.maj/model/runtime';
+import routes from 'src/.maj/routes';
 function Layout() {
   const outlets = useKeepOutlets();
   return <>{outlets}</>;
