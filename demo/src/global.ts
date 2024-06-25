@@ -10,8 +10,10 @@ const middleware: OnionMiddleware = async (ctx, next) => {
   }
 };
 
+const prefix = 'http://localhost:1021';
+
 setRequestConfig({
-  prefix: '',
+  prefix,
   method: 'get',
   middlewares: [middleware],
   errorHandler: (error) => {

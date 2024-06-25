@@ -71,13 +71,13 @@ import { create, Provider, createLoading } from 'dva-umi-lib';
 // TODO: support immer
 import React, { useRef } from 'react';
 import { models } from './models';
-import { dva } from 'src/runtime';
+import * as runtime from 'src/runtime';
 let dvaApp: any;
 // TODO: support history
 const history = {}
 export function RootContainer(props: any) {
   const app = useRef<any>();
-  const runtimeDva = dva||{};
+  const runtimeDva = runtime?.dva || {};
   if (!app.current) {
     app.current = create(
       {

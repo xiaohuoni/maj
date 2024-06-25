@@ -12,6 +12,7 @@
     "build": "maj build",
     "build:cra": "maj setup && GENERATE_SOURCEMAP=false react-scripts build",
     "build:vite": "maj setup && tsc -b && vite build",
+    "mock": "maj mock",
     "start": "maj dev",
     "start:cra": "maj setup && react-scripts start",
     "start:vite": "maj setup && vite"

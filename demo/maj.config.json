@@ -7,5 +7,5 @@
   "inlineCSS": {},
   "skipPlugins": ["aconsole"],
   "px2rem": {},
-  "port": 4000
+  "port": 1021
 }

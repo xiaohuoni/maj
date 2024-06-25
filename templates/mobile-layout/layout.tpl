@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import {
-  useLocation,
-  useNavigate,
-  useOutlet,
-  Outlet
+    useLocation,
+    useNavigate,
+    useOutlet,
+    Outlet
 } from "react-router-dom";
-import { mobileLayout } from 'src/runtime';
+import * as runtime from 'src/runtime';
 
 import {
-  getPageNavBar,
-  getTabBarList,
-  layoutEmitter,
+    getPageNavBar,
+    getTabBarList,
+    layoutEmitter,
 } from './layoutState';
 
 import {
-  request
+    request
 } from '@alita/request';
 
 import { NavBar, TabBar } from '{{{ antdMobile }}}';
@@ -92,7 +92,7 @@ function useDocumentTitle(title: string) {
 }
 export interface AlitaLayoutProps<
     Params extends { [K in keyof Params]?: string } = {},
-    > {
+> {
     match: Match<Params>;
     tabBar?: TabBarProps;
     documentTitle?: string;
@@ -193,7 +193,7 @@ const headerRender = ({
                 className="alita-head alita-layout-head"
             >
                 <NavBar
-                    style={ { width: '100%',...modeStyle, ...style } }
+                    style={{ width: '100%', ...modeStyle, ...style }}
                     backArrow={backArrow || icon || defaultIcon}
                     onBack={() => defaultEvent(navigate)}
                     right={right || rightContent}
@@ -276,7 +276,7 @@ const AlitaLayout: FC<AlitaLayoutProps> = ({
     return (
         <div
             className="alita-page"
-            style={ { background: pageBackground || '#FFF' } }
+            style={{ background: pageBackground || '#FFF' }}
         >
             {!hideNavBar &&
                 headerRender({
@@ -297,7 +297,7 @@ const AlitaLayout: FC<AlitaLayoutProps> = ({
                         unselectedTintColor={color}
                         tintColor={selectedColor}
                         barTintColor={backgroundColor || backgroungColor}
-                        style={ { backgroundColor:backgroundColor || backgroungColor, '--adm-color-primary': selectedColor, '--adm-color-text-secondary': color}}
+                        style={{ backgroundColor: backgroundColor || backgroungColor, '--adm-color-primary': selectedColor, '--adm-color-text-secondary': color }}
                         safeArea={true}
                         activeKey={pathname}
                         onChange={value => {
@@ -318,14 +318,14 @@ const AlitaLayout: FC<AlitaLayoutProps> = ({
                                     icon={
                                         item?.icon || ((active) => (
                                             <div
-                                                style={ {
+                                                style={{
                                                     display: item?.iconPath ? 'block' : 'none',
                                                     width: `${item.iconSize || '0.38rem'}`,
                                                     height: `${item.iconSize || '0.38rem'}`,
                                                     background: `url(${!active ? item.iconPath : item?.selectedIconPath
                                                         }) center center /  ${item.iconSize ||
                                                         '0.38rem'} ${item.iconSize || '0.38rem'} no-repeat`,
-                                                } }
+                                                }}
                                             />
                                         ))
                                     }
@@ -342,112 +342,113 @@ const AlitaLayout: FC<AlitaLayoutProps> = ({
 };
 
 interface BasicLayoutProps {
-  children: any;
+    children: any;
 }
 const changeNavBarConfig = (
-  preConfig: NavBarProps | undefined,
-  changeData: {},
+    preConfig: NavBarProps | undefined,
+    changeData: {},
 ) => {
-  if (!changeData) return preConfig;
-  const { navList, ...other } = preConfig as NavBarProps;
-  if (!navList || navList!.length === 0) {
-    const config = [] as NavBarListItem[];
-    Object.keys(changeData).forEach((i) => {
-      config.push({
-        pagePath: i,
-        navBar: changeData[i],
-      });
-    });
-    return { ...other, navList: config };
-  }
-  let isChanged = false;
-  const newNavList = navList!.map((i) => {
-    if (changeData[i.pagePath]) {
-      i.navBar = { ...i.navBar, ...changeData[i.pagePath] };
-      isChanged = true;
+    if (!changeData) return preConfig;
+    const { navList, ...other } = preConfig as NavBarProps;
+    if (!navList || navList!.length === 0) {
+        const config = [] as NavBarListItem[];
+        Object.keys(changeData).forEach((i) => {
+            config.push({
+                pagePath: i,
+                navBar: changeData[i],
+            });
+        });
+        return { ...other, navList: config };
     }
-    return i;
-  });
-  if (isChanged) {
-    return { ...other, navList: newNavList };
-  }
-  Object.keys(changeData).forEach((i) => {
-    newNavList.push({
-      pagePath: i,
-      navBar: changeData[i],
+    let isChanged = false;
+    const newNavList = navList!.map((i) => {
+        if (changeData[i.pagePath]) {
+            i.navBar = { ...i.navBar, ...changeData[i.pagePath] };
+            isChanged = true;
+        }
+        return i;
     });
-  });
-  return { ...other, navList: newNavList };
+    if (isChanged) {
+        return { ...other, navList: newNavList };
+    }
+    Object.keys(changeData).forEach((i) => {
+        newNavList.push({
+            pagePath: i,
+            navBar: changeData[i],
+        });
+    });
+    return { ...other, navList: newNavList };
 };
 
 const changeTabBarListConfig = (
-  preConfig: TabBarProps | undefined,
-  changeData: {},
+    preConfig: TabBarProps | undefined,
+    changeData: {},
 ) => {
-  if (!changeData) return preConfig;
-  const newChangeData = { ...changeData };
-  const { list, ...other } = preConfig as TabBarProps;
-  if (!list || list!.length === 0) {
-    return preConfig;
-  }
-
-  const newNavList = [] as any[];
-  list!.forEach((i) => {
-    if (newChangeData[i.pagePath]) {
-      const newPagePath = i.pagePath;
-      i = { ...i, ...newChangeData[newPagePath] };
-      if (newChangeData[newPagePath]?.replace) {
-        i.pagePath = newChangeData[newPagePath]?.replace;
-      }
-      delete newChangeData[newPagePath];
-      if (changeData[newPagePath]?.remove) return;
+    if (!changeData) return preConfig;
+    const newChangeData = { ...changeData };
+    const { list, ...other } = preConfig as TabBarProps;
+    if (!list || list!.length === 0) {
+        return preConfig;
     }
-    newNavList.push(i);
-  });
-  Object.keys(newChangeData).forEach((item: string) => {
-    if (newChangeData[item]?.remove) return;
-    newNavList.push(newChangeData[item]);
-  });
-  return { ...other, list: newNavList };
+
+    const newNavList = [] as any[];
+    list!.forEach((i) => {
+        if (newChangeData[i.pagePath]) {
+            const newPagePath = i.pagePath;
+            i = { ...i, ...newChangeData[newPagePath] };
+            if (newChangeData[newPagePath]?.replace) {
+                i.pagePath = newChangeData[newPagePath]?.replace;
+            }
+            delete newChangeData[newPagePath];
+            if (changeData[newPagePath]?.remove) return;
+        }
+        newNavList.push(i);
+    });
+    Object.keys(newChangeData).forEach((item: string) => {
+        if (newChangeData[item]?.remove) return;
+        newNavList.push(newChangeData[item]);
+    });
+    return { ...other, list: newNavList };
 };
 
 let prevPathName = '/';
 const hideNavBar = false;
 const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
-  const [pageNavBar, setPageNavBar] = useState({});
-  const [tabBarList, setTabBarList] = useState({});
-  const { children } = props;
-  const location = useLocation();
-  const { titleList, documentTitle, navBar, tabBar, onPageChange, customHeader=null } = mobileLayout;
-  useEffect(() => {
-    setPageNavBar(getPageNavBar());
-    setTabBarList(getTabBarList());
-    setTimeout(() => {
-      onPageChange && onPageChange(request, location.pathname, prevPathName);
-      prevPathName = location.pathname;
-    }, 10);
-  }, [location.pathname]);
-  useEffect(()=>{
-    layoutEmitter?.useSubscription?.((e) => {
+    const [pageNavBar, setPageNavBar] = useState({});
+    const [tabBarList, setTabBarList] = useState({});
+    const { children } = props;
+    const location = useLocation();
+    const { mobileLayout = {} } = runtime;
+    const { titleList, documentTitle, navBar, tabBar, onPageChange, customHeader = null } = mobileLayout;
+    useEffect(() => {
         setPageNavBar(getPageNavBar());
         setTabBarList(getTabBarList());
-      });
-  },[]);
-  const newNavBar = changeNavBarConfig(navBar, pageNavBar);
-  const newTabBarList = changeTabBarListConfig(tabBar, tabBarList);
-  const layout = {
-    documentTitle,
-    navBar: newNavBar,
-    tabBar: newTabBarList,
-    titleList,
-    hideNavBar
-  };
-  return (
-    <AlitaLayout {...layout}>
-      {customHeader}
-      {children}
-    </AlitaLayout>
-  );
+        setTimeout(() => {
+            onPageChange && onPageChange(request, location.pathname, prevPathName);
+            prevPathName = location.pathname;
+        }, 10);
+    }, [location.pathname]);
+    useEffect(() => {
+        layoutEmitter?.useSubscription?.((e) => {
+            setPageNavBar(getPageNavBar());
+            setTabBarList(getTabBarList());
+        });
+    }, []);
+    const newNavBar = changeNavBarConfig(navBar, pageNavBar);
+    const newTabBarList = changeTabBarListConfig(tabBar, tabBarList);
+    const layout = {
+        documentTitle,
+        navBar: newNavBar,
+        tabBar: newTabBarList,
+        titleList,
+        hideNavBar
+    };
+    return (
+        <AlitaLayout {...layout}>
+            {customHeader}
+            {children}
+        </AlitaLayout>
+    );
 };
 
 export default BasicLayout;
