@@ -3,7 +3,7 @@ import express from '@umijs/bundler-utils/compiled/express';
 import http from 'http';
 // @ts-ignore
 import { logger } from '@umijs/utils';
-import { getRandomPort } from 'get-port-please';
+import { getPort } from 'get-port-please';
 import { getDevBanner } from './utils/getDevBanner';
 import { createMockMiddleware } from './utils/umiMock/createMockMiddleware';
 import { getMockData } from './utils/umiMock/getMockData';
@@ -53,7 +53,7 @@ export async function mock({ mockDir }: MockConfig): Promise<any> {
   );
 
   const server = http.createServer(app);
-  const port = await getRandomPort();
+  const port = await getPort(3000);
 
   const protocol = 'http:';
   const host = 'localhost';
