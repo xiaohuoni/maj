@@ -193,7 +193,7 @@ const headerRender = ({
                 className="alita-head alita-layout-head"
             >
                 <NavBar
-                    style={{ width: '100%', ...modeStyle, ...style }}
+                    style={ { width: '100%', ...modeStyle, ...style }}
                     backArrow={backArrow || icon || defaultIcon}
                     onBack={() => defaultEvent(navigate)}
                     right={right || rightContent}
@@ -276,7 +276,7 @@ const AlitaLayout: FC<AlitaLayoutProps> = ({
     return (
         <div
             className="alita-page"
-            style={{ background: pageBackground || '#FFF' }}
+            style={ { background: pageBackground || '#FFF' }}
         >
             {!hideNavBar &&
                 headerRender({
@@ -297,7 +297,7 @@ const AlitaLayout: FC<AlitaLayoutProps> = ({
                         unselectedTintColor={color}
                         tintColor={selectedColor}
                         barTintColor={backgroundColor || backgroungColor}
-                        style={{ backgroundColor: backgroundColor || backgroungColor, '--adm-color-primary': selectedColor, '--adm-color-text-secondary': color }}
+                        style={ { backgroundColor: backgroundColor || backgroungColor, '--adm-color-primary': selectedColor, '--adm-color-text-secondary': color }}
                         safeArea={true}
                         activeKey={pathname}
                         onChange={value => {
@@ -318,7 +318,7 @@ const AlitaLayout: FC<AlitaLayoutProps> = ({
                                     icon={
                                         item?.icon || ((active) => (
                                             <div
-                                                style={{
+                                                style={ {
                                                     display: item?.iconPath ? 'block' : 'none',
                                                     width: `${item.iconSize || '0.38rem'}`,
                                                     height: `${item.iconSize || '0.38rem'}`,
