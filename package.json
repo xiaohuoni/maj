@@ -1,6 +1,6 @@
 {
   "name": "maj",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "keywords": [],
   "license": "ISC",
@@ -11,12 +11,12 @@
   },
   "scripts": {
     "build": "father build",
-    "build:app": "cd demo && pnpm run build",
+    "build:app": "cd examples/demo && pnpm run build",
     "dev": "father dev",
     "format": "prettier --write .",
     "mock": "npx maj mock",
-    "start": "cd demo && pnpm run start",
-    "start:cra": "cd demo && pnpm run start:cra"
+    "start": "cd examples/demo && pnpm run start",
+    "start:cra": "cd examples/demo && pnpm run start:cra"
   },
   "dependencies": {
     "@umijs/bundler-utils": "^4.2.11",
