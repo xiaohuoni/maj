@@ -1,5 +1,7 @@
 import { OnionMiddleware, setRequestConfig } from '@alita/request';
+import 'antd-mobile/es/global';
 import 'src/.maj/hd/hd';
+
 const middleware: OnionMiddleware = async (ctx, next) => {
   await next();
   const { data } = ctx.res;

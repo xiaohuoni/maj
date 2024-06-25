@@ -4,6 +4,7 @@ import { Api } from './plugins/Api';
 import Aconsole from './plugins/aconsole';
 import Hd from './plugins/hd';
 import Keepalive from './plugins/keepalive';
+import MobileLayout from './plugins/mobilelayout';
 import Model from './plugins/model';
 import Routes from './plugins/routes';
 import { getConfig } from './utils/getConfig';
@@ -25,7 +26,7 @@ const config = getConfig(cwd);
 const api = new Api({
   paths,
   config,
-  modules: [Routes, Model, Keepalive, Aconsole, Hd],
+  modules: [Routes, Model, Keepalive, Aconsole, Hd, MobileLayout],
 });
 api.setCliName(command);
 // process.env.NODE_ENV = 'development';

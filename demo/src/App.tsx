@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { HashRouter, Link, useRoutes } from 'react-router-dom';
-// import { _InspxContainer } from 'src/.maj/aconsole/inspx';
 import { KeepAliveLayout, useKeepOutlets } from 'src/.maj/keepalive';
+import AlitaLayout from 'src/.maj/mobilelayout/AlitaLayout';
 import { ProviderWrapper } from 'src/.maj/model/runtime';
 import routes from 'src/.maj/routes';
 function Layout() {
@@ -36,11 +36,13 @@ function App() {
             </li>
           ))}
         </ul>
-        <KeepAliveLayout>
-          <Suspense>
-            <Routes />
-          </Suspense>
-        </KeepAliveLayout>
+        <AlitaLayout>
+          <KeepAliveLayout>
+            <Suspense>
+              <Routes />
+            </Suspense>
+          </KeepAliveLayout>
+        </AlitaLayout>
       </ProviderWrapper>
     </HashRouter>
   );

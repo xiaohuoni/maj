@@ -4,6 +4,7 @@
       "antd-mobile": "antd-mobile/2x"
     }
   },
+  "inlineCSS": {},
   "skipPlugins": ["aconsole"],
   "px2rem": {},
   "port": 4000
