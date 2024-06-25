@@ -3,6 +3,7 @@ import { join } from 'path';
 import { DEFAULT_CONFIG_FILE } from '../constants';
 
 export interface MajConfig {
+  skipPlugins?: string[];
   resolve?: {
     alias?: Record<string, string>;
     extensions?: string[];

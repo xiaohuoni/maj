@@ -8,19 +8,22 @@ export class Api {
   public cliName: string = '';
   public modules: Module[];
   public config: MajConfig;
+  public skipPlugins: string[];
   constructor({
     paths,
     modules = [],
     config,
+    skipPlugins = [],
   }: {
     paths: Paths;
     config: MajConfig;
+    skipPlugins?: string[];
     modules: (typeof Module)[];
   }) {
     this.paths = paths;
     this.config = config;
+    this.skipPlugins = skipPlugins;
     this.modules = modules.map((M: typeof Module) => {
-      // @ts-ignore
       return new M({ api: this });
     });
   }
@@ -31,7 +34,9 @@ export class Api {
     this.cliName = cli;
   }
   getModules() {
-    return this.modules;
+    return this.modules.filter((m) => {
+      return !this.skipPlugins.includes(m.name);
+    });
   }
   setup() {
     this.getModules().forEach((mod) => {
