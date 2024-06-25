@@ -3,6 +3,7 @@
 // DO NOT CHANGE IT MANUALLY!
 import React from 'react';
 import { KeepAliveContext } from './context';
+import * as runtime from 'src/runtime';
 
 export const KeepAliveLayout = (props) => {
   const keepElements = React.useRef<any>({});
@@ -12,8 +13,8 @@ export const KeepAliveLayout = (props) => {
   const init = async () => {
     try {
       const { getKeepAlive = (config) => config } = runtime;
-      const runtime = await getKeepAlive(keepalive);
-      setKeepalive(runtime);
+      const rtconfig = await getKeepAlive(keepalive);
+      setKeepalive(rtconfig);
     } catch (error) {
       console.error(error);
     }
