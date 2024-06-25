@@ -342,8 +342,7 @@ const AlitaLayout: FC<AlitaLayoutProps> = ({
 };
 
 interface BasicLayoutProps {
-  hideNavBar: boolean;
-  location: any;
+  children: any;
 }
 const changeNavBarConfig = (
   preConfig: NavBarProps | undefined,
@@ -417,7 +416,7 @@ const hideNavBar = false;
 const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const [pageNavBar, setPageNavBar] = useState({});
   const [tabBarList, setTabBarList] = useState({});
-  const { children, ...otherProps } = props;
+  const { children } = props;
   const location = useLocation();
   const { titleList, documentTitle, navBar, tabBar, onPageChange, customHeader=null } = mobileLayout;
   useEffect(() => {
