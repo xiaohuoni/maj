@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "father build",
-    "build:maj": "cd demo && pnpm run build",
+    "build:app": "cd demo && pnpm run build",
     "dev": "father dev",
     "format": "prettier --write .",
     "mock": "npx maj mock",

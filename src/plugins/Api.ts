@@ -1,4 +1,5 @@
 import { JsHooks } from '@umijs/mako/binding';
+import { fsExtra } from '@umijs/utils';
 import { MajConfig } from '../utils/getConfig';
 import { Paths } from '../utils/path';
 import { Module } from './Module';
@@ -39,6 +40,9 @@ export class Api {
     });
   }
   setup() {
+    // clear
+    // 先清空缓存目录 this.paths.absTmpPath
+    fsExtra.emptyDirSync(this.paths.absTmpPath);
     this.getModules().forEach((mod) => {
       mod.setup();
     });

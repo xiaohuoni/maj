@@ -2,6 +2,7 @@ import { cac } from 'cac';
 import { VERSION } from './constants';
 import { Api } from './plugins/Api';
 import Aconsole from './plugins/aconsole';
+import Dva from './plugins/dva';
 import Hd from './plugins/hd';
 import Keepalive from './plugins/keepalive';
 import MobileLayout from './plugins/mobilelayout';
@@ -26,7 +27,7 @@ const config = getConfig(cwd);
 const api = new Api({
   paths,
   config,
-  modules: [Routes, Model, Keepalive, Aconsole, Hd, MobileLayout],
+  modules: [Routes, Model, Keepalive, Aconsole, Hd, MobileLayout, Dva],
 });
 api.setCliName(command);
 // process.env.NODE_ENV = 'development';

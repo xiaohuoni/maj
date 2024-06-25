@@ -1,0 +1,21 @@
+{
+  "name": "dva-umi-lib",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "pnpm tsc"
+  },
+  "dependencies": {
+    "dva-core": "^2.0.4",
+    "dva-loading": "^3.0.25",
+    "react-redux": "^9.1.2",
+    "redux": "^5.0.1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
+  }
+}

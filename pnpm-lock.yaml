@@ -83,6 +83,9 @@ importers:
       antd-mobile-icons:
         specifier: ^0.3.0
         version: 0.3.0
+      dva-umi-lib:
+        specifier: ^0.0.1
+        version: 0.0.1(@types/react@18.3.3)(react@18.3.1)
       fast-deep-equal:
         specifier: ^3.1.3
         version: 3.1.3
@@ -4554,7 +4557,6 @@ packages:
       {
         integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==,
       }
-    dev: true
 
   /@types/q@1.5.8:
     resolution:
@@ -4594,7 +4596,6 @@ packages:
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
-    dev: true
 
   /@types/resolve@1.17.1:
     resolution:
@@ -4678,6 +4679,13 @@ packages:
         integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==,
       }
     dev: true
+
+  /@types/use-sync-external-store@0.0.3:
+    resolution:
+      {
+        integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==,
+      }
+    dev: false
 
   /@types/ws@8.5.10:
     resolution:
@@ -7966,6 +7974,13 @@ packages:
       entities: 2.2.0
     dev: true
 
+  /dom-walk@0.1.2:
+    resolution:
+      {
+        integrity: sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w==,
+      }
+    dev: false
+
   /domain-browser@1.2.0:
     resolution:
       {
@@ -8071,6 +8086,53 @@ packages:
       inherits: 2.0.4
       readable-stream: 3.6.2
       stream-shift: 1.0.3
+
+  /dva-core@2.0.4(redux@5.0.1):
+    resolution:
+      {
+        integrity: sha512-Zh39llFyItu9HKXKfCZVf9UFtDTcypdAjGBew1S+wK8BGVzFpm1GPTdd6uIMeg7O6STtCvt2Qv+RwUut1GFynA==,
+      }
+    peerDependencies:
+      redux: 4.x
+    dependencies:
+      '@babel/runtime': 7.23.6
+      flatten: 1.0.3
+      global: 4.4.0
+      invariant: 2.2.4
+      is-plain-object: 2.0.4
+      redux: 5.0.1
+      redux-saga: 0.16.2
+      warning: 3.0.0
+    dev: false
+
+  /dva-loading@3.0.25(dva-core@2.0.4):
+    resolution:
+      {
+        integrity: sha512-RYbpSjvPj2NF+3YSc9QkDpwM1wO8uRAVfU6VGSgIxA2kA/Xd6yoY+VQM7GDRnvCvT579pESeBZBXk+8WKWOdDA==,
+      }
+    peerDependencies:
+      dva-core: ^1.1.0 || ^1.5.0-0 || ^1.6.0-0
+    dependencies:
+      '@babel/runtime': 7.23.6
+      dva-core: 2.0.4(redux@5.0.1)
+    dev: false
+
+  /dva-umi-lib@0.0.1(@types/react@18.3.3)(react@18.3.1):
+    resolution:
+      {
+        integrity: sha512-GefGq0zXLuaWwSKAiMqNqoBsnqKPwHFq4/kYgOJL+exrK2v6Z+RCEyix3yBZLz7s1/Cvf9Mu4SA0vA5ubE4omQ==,
+      }
+    peerDependencies:
+      react: ^17.0.2
+    dependencies:
+      dva-core: 2.0.4(redux@5.0.1)
+      dva-loading: 3.0.25(dva-core@2.0.4)
+      react: 18.3.1
+      react-redux: 9.1.2(@types/react@18.3.3)(react@18.3.1)(redux@5.0.1)
+      redux: 5.0.1
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
 
   /eastasianwidth@0.2.0:
     resolution:
@@ -9394,6 +9456,14 @@ packages:
       }
     dev: true
 
+  /flatten@1.0.3:
+    resolution:
+      {
+        integrity: sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==,
+      }
+    deprecated: flatten is deprecated in favor of utility frameworks such as lodash.
+    dev: false
+
   /follow-redirects@1.15.6:
     resolution:
       {
@@ -9774,6 +9844,16 @@ packages:
       kind-of: 6.0.3
       which: 1.3.1
     dev: true
+
+  /global@4.4.0:
+    resolution:
+      {
+        integrity: sha512-wv/LAoHdRE3BeTGz53FAamhGlPLhlssK45usmGFThIi4XqnBmjKQ16u+RNbP7WvigRZDxUsM0J3gcQ5yicaL0w==,
+      }
+    dependencies:
+      min-document: 2.19.0
+      process: 0.11.10
+    dev: false
 
   /globals@11.12.0:
     resolution:
@@ -10374,6 +10454,15 @@ packages:
       }
     dev: false
 
+  /invariant@2.2.4:
+    resolution:
+      {
+        integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==,
+      }
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
+
   /ipaddr.js@1.9.1:
     resolution:
       {
@@ -10668,6 +10757,16 @@ packages:
     engines: { node: '>=12' }
     dev: true
 
+  /is-plain-object@2.0.4:
+    resolution:
+      {
+        integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==,
+      }
+    engines: { node: '>=0.10.0' }
+    dependencies:
+      isobject: 3.0.1
+    dev: false
+
   /is-potential-custom-element-name@1.0.1:
     resolution:
       {
@@ -10844,6 +10943,14 @@ packages:
         integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==,
       }
     dev: true
+
+  /isobject@3.0.1:
+    resolution:
+      {
+        integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==,
+      }
+    engines: { node: '>=0.10.0' }
+    dev: false
 
   /isomorphic-fetch@2.2.1:
     resolution:
@@ -12468,6 +12575,15 @@ packages:
       }
     engines: { node: '>=6' }
     dev: true
+
+  /min-document@2.19.0:
+    resolution:
+      {
+        integrity: sha512-9Wy1B3m3f66bPPmU5hdA4DR4PB2OfDU/+GS3yAB7IQozE3tqXaVv2zOjgla7MEGSRv95+ILmOuvhLkOK6wJtCQ==,
+      }
+    dependencies:
+      dom-walk: 0.1.2
+    dev: false
 
   /mini-css-extract-plugin@2.9.0(webpack@5.92.0):
     resolution:
@@ -14568,7 +14684,6 @@ packages:
         integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==,
       }
     engines: { node: '>= 0.6.0' }
-    dev: true
 
   /promise@8.3.0:
     resolution:
@@ -14916,6 +15031,28 @@ packages:
         integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==,
       }
 
+  /react-redux@9.1.2(@types/react@18.3.3)(react@18.3.1)(redux@5.0.1):
+    resolution:
+      {
+        integrity: sha512-0OA4dhM1W48l3uzmv6B7TXPCGmokUU4p1M44DGN2/D9a1FjVPukVjER1PcPX97jIg6aUeLq1XJo1IpfbgULn0w==,
+      }
+    peerDependencies:
+      '@types/react': ^18.2.25
+      react: ^18.0
+      redux: ^5.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      redux:
+        optional: true
+    dependencies:
+      '@types/react': 18.3.3
+      '@types/use-sync-external-store': 0.0.3
+      react: 18.3.1
+      redux: 5.0.1
+      use-sync-external-store: 1.2.2(react@18.3.1)
+    dev: false
+
   /react-refresh@0.11.0:
     resolution:
       {
@@ -15137,6 +15274,20 @@ packages:
     dependencies:
       minimatch: 3.1.2
     dev: true
+
+  /redux-saga@0.16.2:
+    resolution:
+      {
+        integrity: sha512-iIjKnRThI5sKPEASpUvySemjzwqwI13e3qP7oLub+FycCRDysLSAOwt958niZW6LhxfmS6Qm1BzbU70w/Koc4w==,
+      }
+    dev: false
+
+  /redux@5.0.1:
+    resolution:
+      {
+        integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==,
+      }
+    dev: false
 
   /reflect.getprototypeof@1.0.6:
     resolution:
@@ -17535,6 +17686,15 @@ packages:
     dependencies:
       makeerror: 1.0.12
     dev: true
+
+  /warning@3.0.0:
+    resolution:
+      {
+        integrity: sha512-jMBt6pUrKn5I+OGgtQ4YZLdhIeJmObddh6CsibPxyQ5yPZm1XExSyzC1LCNX7BzhxWgiHmizBWJTHJIjMjTQYQ==,
+      }
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
 
   /watchpack@2.4.1:
     resolution:

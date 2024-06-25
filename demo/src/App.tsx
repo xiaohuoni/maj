@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { HashRouter, Link, useRoutes } from 'react-router-dom';
+import { RootContainer } from 'src/.maj/dva/dva';
 import { KeepAliveLayout, useKeepOutlets } from 'src/.maj/keepalive';
 import AlitaLayout from 'src/.maj/mobilelayout/AlitaLayout';
 import { ProviderWrapper } from 'src/.maj/model/runtime';
@@ -24,26 +25,28 @@ function Routes() {
 function App() {
   return (
     <HashRouter>
-      <ProviderWrapper>
-        <p>That pages state is keepalive!</p>
-        <p>Routes:</p>
-        <ul>
-          {routes.map((route) => (
-            <li key={route.path}>
-              <Link to={route.path} key={route.path}>
-                {route.path}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <AlitaLayout>
+      <AlitaLayout>
+        <ProviderWrapper>
+          <p>That pages state is keepalive!</p>
+          <p>Routes:</p>
+          <ul>
+            {routes.map((route) => (
+              <li key={route.path}>
+                <Link to={route.path} key={route.path}>
+                  {route.path}
+                </Link>
+              </li>
+            ))}
+          </ul>
           <KeepAliveLayout>
-            <Suspense>
-              <Routes />
-            </Suspense>
+            <RootContainer>
+              <Suspense>
+                <Routes />
+              </Suspense>
+            </RootContainer>
           </KeepAliveLayout>
-        </AlitaLayout>
-      </ProviderWrapper>
+        </ProviderWrapper>
+      </AlitaLayout>
     </HashRouter>
   );
 }
