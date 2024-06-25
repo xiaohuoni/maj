@@ -1,0 +1,35 @@
+{
+  "name": "react-template",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "farm build",
+    "clean": "farm clean",
+    "dev": "maj setup && farm start",
+    "mock": "maj mock",
+    "preview": "farm preview",
+    "start": "npm run dev & npm run mock"
+  },
+  "dependencies": {
+    "@alita/request": "^3.1.2",
+    "@alitajs/postcss-plugin-px2rem": "^0.0.1",
+    "@farmfe/js-plugin-postcss": "^1.7.0",
+    "ahooks": "^3.8.0",
+    "antd-mobile": "^5.36.1",
+    "antd-mobile-icons": "^0.3.0",
+    "dva-umi-lib": "^0.0.1",
+    "postcss": "^8.4.38",
+    "react": "18",
+    "react-dom": "18",
+    "react-router-dom": "^6.24.0"
+  },
+  "devDependencies": {
+    "@farmfe/cli": "^1.0.2",
+    "@farmfe/core": "^1.1.13",
+    "@farmfe/plugin-react": "^1.0.1",
+    "@types/react": "18",
+    "@types/react-dom": "18",
+    "core-js": "^3.36.1",
+    "maj": "workspace:*",
+    "react-refresh": "^0.14.0"
+  }
+}
