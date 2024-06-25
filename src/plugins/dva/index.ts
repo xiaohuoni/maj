@@ -89,7 +89,7 @@ export function RootContainer(props: any) {
         setupMiddlewares(middlewares: Function[]) {
           return [...middlewares];
         },
-        setupApp(app: IDvaApp) {
+        setupApp(app: any) {
           app._history = history;
         },
       },
