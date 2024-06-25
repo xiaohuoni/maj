@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { HashRouter, Link, useRoutes } from 'react-router-dom';
+import { _InspxContainer } from 'src/.maj/plugin-aconsole/inspx';
 import { KeepAliveLayout, useKeepOutlets } from './.maj/plugin-keepalive';
 import { ProviderWrapper } from './.maj/plugin-model/runtime';
 import routes from './.maj/routes';
@@ -22,7 +23,7 @@ function Routes() {
 }
 function App() {
   return (
-    <div>
+    <_InspxContainer>
       <HashRouter>
         <ProviderWrapper>
           <p>That pages state is keepalive!</p>
@@ -43,7 +44,7 @@ function App() {
           </KeepAliveLayout>
         </ProviderWrapper>
       </HashRouter>
-    </div>
+    </_InspxContainer>
   );
 }
 

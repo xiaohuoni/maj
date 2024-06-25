@@ -18,3 +18,5 @@ setRequestConfig({
     console.log(error);
   },
 });
+
+if ((window as any).VConsole) new (window as any).VConsole({});

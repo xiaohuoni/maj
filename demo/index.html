@@ -5,9 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
+    <style>
+      .vc-switch {
+        right: 0px;
+        bottom: calc(env(safe-area-inset-bottom) + 1.2rem) !important;
+      }
+    </style>
   </body>
 </html>
