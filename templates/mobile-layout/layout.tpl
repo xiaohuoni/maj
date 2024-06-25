@@ -17,7 +17,7 @@ import {
   request
 } from '@alita/request';
 
-import { NavBar, TabBar } from 'antd-mobile';
+import { NavBar, TabBar } from '{{{ antdMobile }}}';
 import { LeftOutline } from 'antd-mobile-icons'
 
 export interface NavBarListItem {

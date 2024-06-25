@@ -1,3 +1,4 @@
+import { Mustache } from '@umijs/utils';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { Module } from '../Module';
@@ -22,7 +23,9 @@ export default class MobileLayout extends Module {
     );
     this.writeTmpFile({
       path: 'AlitaLayout.tsx',
-      content: layoutTpl,
+      content: Mustache.render(layoutTpl, {
+        antdMobile: this.api.config.antdMobile || 'antd-mobile',
+      }),
     });
 
     const modelTpl = readFileSync(
