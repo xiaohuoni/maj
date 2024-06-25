@@ -13,7 +13,7 @@ export default class Routes extends Module {
       userConfig: {},
       applyPlugins: ({ initialValue }: any) => initialValue,
       config: {
-        paths: this.paths,
+        paths: this.api.paths,
         conventionRoutes: {
           // 规定只有index文件会被识别成路由
           exclude: [
@@ -27,7 +27,7 @@ export default class Routes extends Module {
           ],
         },
       },
-      paths: this.paths,
+      paths: this.api.paths,
     };
     // routes
     const routes = await getRoutes({ api });

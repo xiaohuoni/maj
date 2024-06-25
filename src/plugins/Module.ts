@@ -1,23 +1,14 @@
 import { JsHooks } from '@umijs/mako/binding';
 import { writeTmpFile, WriteTmpFileOptions } from '../utils/api';
-import { Paths } from '../utils/path';
-
+import { Api } from './Api';
 export class Module {
-  public paths: Paths;
   public name: string = '';
-  public getCliName;
-  constructor({
-    paths,
-    getCliName,
-  }: {
-    paths: Paths;
-    getCliName: () => string;
-  }) {
-    this.paths = paths;
-    this.getCliName = getCliName;
+  public api: Api;
+  constructor({ api }: { api: Api }) {
+    this.api = api;
   }
   writeTmpFile(params: Omit<WriteTmpFileOptions, 'paths' | 'name'>) {
-    writeTmpFile({ ...params, paths: this.paths, name: this.name });
+    writeTmpFile({ ...params, paths: this.api.paths, name: this.name });
   }
   async generateFiles() {}
   async setup() {

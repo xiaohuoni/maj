@@ -1,28 +1,25 @@
 import { build as makoBuild } from '@umijs/mako';
-import { Plugins } from './plugins/Plugins';
-import { Paths } from './utils/path';
+import { Api } from './plugins/Api';
 
 export interface BuildConfig {
-  paths: Paths;
-  plugins: Plugins;
+  api: Api;
 }
 
-export async function build({ paths, plugins }: BuildConfig): Promise<any> {
-  const { cwd } = paths;
+export async function build({ api }: BuildConfig): Promise<any> {
+  const { cwd } = api.paths;
   makoBuild({
     root: cwd,
     config: {
+      plugins: api.getMakoPlugin(),
+      mode: 'production',
+      devtool: false,
+      ...api.config,
       resolve: {
         alias: {
           src: './src',
-          'antd-mobile': 'antd-mobile/2x',
+          ...api.config?.resolve?.alias,
         },
       },
-      // TODO: useConfig
-      px2rem: {},
-      plugins: plugins.getMakoPlugin(),
-      mode: 'production',
-      devtool: false,
     },
 
     watch: false,

@@ -8,8 +8,6 @@ export default class Keepalive extends Module {
     this.name = 'keepalive';
   }
   async generateFiles() {
-    const cliName = this.getCliName();
-    console.log(cliName);
     const contextContent = readFileSync(
       join(__dirname, '../../../templates/keepalive/context.tsx'),
       'utf-8',

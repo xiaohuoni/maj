@@ -1,0 +1,9 @@
+{
+  "resolve": {
+    "alias": {
+      "antd-mobile": "antd-mobile/2x"
+    }
+  },
+  "px2rem": {},
+  "port": 4000
+}

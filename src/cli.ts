@@ -1,29 +1,33 @@
 import { cac } from 'cac';
 import { VERSION } from './constants';
-import { Plugins } from './plugins/Plugins';
+import { Api } from './plugins/Api';
 import Aconsole from './plugins/aconsole';
 import Hd from './plugins/hd';
 import Keepalive from './plugins/keepalive';
 import Model from './plugins/model';
 import Routes from './plugins/routes';
+import { getConfig } from './utils/getConfig';
 import { getPaths, winJoin } from './utils/path';
 
 const cli = cac('maj');
 const processArgs = process.argv;
 const command = processArgs.slice(2)[0];
-
+const cwd = process.cwd();
 const paths = getPaths({
-  cwd: process.cwd(),
+  cwd,
   env: 'development' as any,
   prefix: 'maj',
 });
 
-// plugins
-const plugins = new Plugins({
+const config = getConfig(cwd);
+
+// api
+const api = new Api({
   paths,
+  config,
   modules: [Routes, Model, Keepalive, Aconsole, Hd],
 });
-plugins.setCliName(command);
+api.setCliName(command);
 // process.env.NODE_ENV = 'development';
 // process.env.NODE_ENV = 'production';
 
@@ -32,7 +36,7 @@ cli
   .alias('init')
   .action(async () => {
     try {
-      plugins.setup();
+      api.setup();
     } catch (e) {
       console.error(e);
       process.exit(1);
@@ -47,8 +51,8 @@ cli
   .action(async () => {
     const { dev } = require('./dev');
     try {
-      plugins.setup();
-      await dev({ paths, plugins });
+      api.setup();
+      await dev({ api });
     } catch (e) {
       console.error(e);
       process.exit(1);
@@ -62,8 +66,8 @@ cli
   .action(async () => {
     const { build } = require('./build');
     try {
-      plugins.setup();
-      await build({ paths, plugins });
+      api.setup();
+      await build({ api });
     } catch (e) {
       console.error(e);
       process.exit(1);
@@ -79,7 +83,7 @@ cli
     const { mock } = require('./mock');
     try {
       const dir = winJoin(process.cwd(), mockDir || 'mock');
-      await mock({ paths, mockDir: dir });
+      await mock({ paths, mockDir: dir, config });
     } catch (e) {
       console.error(e);
       process.exit(1);
