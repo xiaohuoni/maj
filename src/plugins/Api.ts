@@ -3,6 +3,7 @@ import { fsExtra } from '@umijs/utils';
 import { MajConfig } from '../utils/getConfig';
 import { Paths } from '../utils/path';
 import { IInstallDeps, Module } from './Module';
+
 export class Api {
   public paths: Paths;
   public name: string = '';
@@ -10,20 +11,30 @@ export class Api {
   public modules: Module[];
   public config: MajConfig;
   public skipPlugins: string[];
+  public runtimeJS: {
+    path?: string;
+    exports?: readonly string[];
+  };
   constructor({
     paths,
     modules = [],
     config,
     skipPlugins = [],
+    runtimeJS,
   }: {
     paths: Paths;
     config: MajConfig;
     skipPlugins?: string[];
     modules: (typeof Module)[];
+    runtimeJS: {
+      path?: string;
+      exports?: readonly string[];
+    };
   }) {
     this.paths = paths;
     this.config = config;
     this.skipPlugins = skipPlugins;
+    this.runtimeJS = runtimeJS;
     this.modules = modules.map((M: typeof Module) => {
       return new M({ api: this });
     });
@@ -45,6 +56,11 @@ export class Api {
     fsExtra.emptyDirSync(this.paths.absTmpPath);
     this.getModules().forEach((mod) => {
       mod.setup();
+    });
+  }
+  check() {
+    this.getModules().forEach((mod) => {
+      mod.check();
     });
   }
   getMakoPlugin(): JsHooks[] {

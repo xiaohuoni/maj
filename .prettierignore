@@ -9,3 +9,4 @@ dist
 .gitkeep
 .DS_Store
 .gitignore
+templates

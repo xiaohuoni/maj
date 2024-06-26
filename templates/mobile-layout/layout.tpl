@@ -5,8 +5,9 @@ import {
     useOutlet,
     Outlet
 } from "react-router-dom";
-import * as runtime from 'src/runtime';
-
+{{#hasRuntime}}
+import { mobileLayout } from 'src/runtime';
+{{/hasRuntime}}
 import {
     getPageNavBar,
     getTabBarList,
@@ -418,7 +419,9 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     const [tabBarList, setTabBarList] = useState({});
     const { children } = props;
     const location = useLocation();
-    const { mobileLayout = {} } = runtime;
+{{^hasRuntime}}
+    const mobileLayout = {};
+{{/hasRuntime}}
     const { titleList, documentTitle, navBar, tabBar, onPageChange, customHeader = null } = mobileLayout;
     useEffect(() => {
         setPageNavBar(getPageNavBar());

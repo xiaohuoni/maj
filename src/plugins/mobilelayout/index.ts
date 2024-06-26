@@ -9,6 +9,7 @@ export default class MobileLayout extends Module {
     this.name = 'mobilelayout';
   }
   async generateFiles() {
+    const hasRuntime = this.api.runtimeJS?.exports?.includes('mobileLayout');
     const layoutTpl = readFileSync(
       join(
         __dirname,
@@ -25,6 +26,7 @@ export default class MobileLayout extends Module {
       path: 'AlitaLayout.tsx',
       content: Mustache.render(layoutTpl, {
         antdMobile: this.api.config.antdMobile || 'antd-mobile',
+        hasRuntime,
       }),
     });
 

@@ -1,7 +1,8 @@
+import { parseModule } from '@umijs/bundler-utils';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { DEFAULT_CONFIG_FILE } from '../constants';
-
+import { Paths } from './path';
 export interface MajConfig {
   skipPlugins?: string[];
   resolve?: {
@@ -31,4 +32,25 @@ export function getConfig(cwd: string): MajConfig {
   config.resolve = config.resolve ?? {};
   config.resolve.alias = config.resolve.alias ?? {};
   return config;
+}
+export function expandJSPaths(path: string) {
+  return ['.js', '.jsx', '.ts', '.tsx'].map((ext) => {
+    return `${path}${ext}`;
+  });
+}
+
+export async function getAppJsInfo(paths: Paths, fileName: string = 'runtime') {
+  for (const path of expandJSPaths(join(paths.absSrcPath, fileName))) {
+    if (existsSync(path)) {
+      const [_, exports] = await parseModule({
+        path,
+        content: readFileSync(path, 'utf-8'),
+      });
+      return {
+        path,
+        exports,
+      };
+    }
+  }
+  return { path: '', exports: [] };
 }

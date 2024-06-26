@@ -1,3 +1,4 @@
+import { Mustache } from '@umijs/utils';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { Module } from '../Module';
@@ -25,7 +26,12 @@ export default class Keepalive extends Module {
       'utf-8',
     );
 
-    this.writeTmpFile({ path: 'runtime.tsx', content: runtimeContent });
+    this.writeTmpFile({
+      path: 'runtime.tsx',
+      content: Mustache.render(runtimeContent, {
+        hasRuntime: this.api.runtimeJS?.exports?.includes('getKeepAlive'),
+      }),
+    });
     const supportContent = readFileSync(
       join(__dirname, '../../../templates/keepalive/support.tsx'),
       'utf-8',

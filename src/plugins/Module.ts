@@ -24,4 +24,5 @@ export class Module {
   getInstallDependencies(): IInstallDeps {
     return {};
   }
+  check() {}
 }

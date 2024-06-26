@@ -38,7 +38,6 @@ export async function dev({ api }: DevConfig): Promise<any> {
   // prevent first websocket auto disconnected
   // ref https://github.com/chimurai/http-proxy-middleware#external-websocket-upgrade
   server.on('upgrade', wsProxy.upgrade);
-  console.log(api.config);
   build({
     root: cwd,
     config: {

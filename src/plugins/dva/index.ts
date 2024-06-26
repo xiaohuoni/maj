@@ -61,6 +61,7 @@ export default class Dva extends Module {
       content: ModelUtils.getModelsContent(models),
     });
 
+    const hasRuntime = this.api.runtimeJS?.exports?.includes('dva');
     // dva.tsx
     this.writeTmpFile({
       path: 'dva.tsx',
@@ -71,13 +72,13 @@ import { create, Provider, createLoading } from 'dva-umi-lib';
 // TODO: support immer
 import React, { useRef } from 'react';
 import { models } from './models';
-import * as runtime from 'src/runtime';
+${hasRuntime ? "import { dva } from 'src/runtime';" : ''}
 let dvaApp: any;
 // TODO: support history
 const history = {}
 export function RootContainer(props: any) {
   const app = useRef<any>();
-  const runtimeDva = runtime?.dva || {};
+  const runtimeDva = ${hasRuntime ? 'dva || ' : ''}{};
   if (!app.current) {
     app.current = create(
       {
