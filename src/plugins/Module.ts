@@ -1,6 +1,10 @@
 import { JsHooks } from '@umijs/mako/binding';
 import { writeTmpFile, WriteTmpFileOptions } from '../utils/api';
 import { Api } from './Api';
+export interface IInstallDeps {
+  devDependencies?: string[];
+  dependencies?: string[];
+}
 export class Module {
   public name: string = '';
   public api: Api;
@@ -16,5 +20,8 @@ export class Module {
   }
   getMakoPlugin(): JsHooks | null {
     return null;
+  }
+  getInstallDependencies(): IInstallDeps {
+    return {};
   }
 }

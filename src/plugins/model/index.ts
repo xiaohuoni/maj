@@ -52,4 +52,9 @@ export function dataflowProvider(container, opts) {
       `,
     });
   }
+  getInstallDependencies() {
+    return {
+      dependencies: ['fast-deep-equal'],
+    };
+  }
 }

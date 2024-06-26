@@ -18,7 +18,7 @@ export interface MajConfig {
         selectorWhiteList?: string[];
       };
   port?: number;
-  // 真实的 antd-mobile 路径，用于兼容 2 和 5 公用的场景
+  // 真实的 antd-mobile 路径，用于兼容 2 和 5 共用的场景
   antdMobile?: string;
 }
 

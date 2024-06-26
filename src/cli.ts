@@ -1,3 +1,4 @@
+import { installDeps } from '@umijs/utils';
 import { cac } from 'cac';
 import { VERSION } from './constants';
 import { Api } from './plugins/Api';
@@ -34,17 +35,31 @@ api.setCliName(command);
 // process.env.NODE_ENV = 'production';
 
 cli
-  .command('setup', '初始化项目')
+  .command('install', '初始化项目')
+  .alias('i')
   .alias('init')
   .action(async () => {
     try {
-      api.setup();
+      // 安装依赖
+      const deps = api.getInstallDependencies();
+      installDeps({ opts: deps, cwd });
+      // 其他需要前置的操作
     } catch (e) {
       console.error(e);
       process.exit(1);
     } finally {
     }
   });
+
+cli.command('setup', '重置缓存文件').action(async () => {
+  try {
+    api.setup();
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  } finally {
+  }
+});
 
 // dev
 cli

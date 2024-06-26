@@ -2,7 +2,7 @@ import { JsHooks } from '@umijs/mako/binding';
 import { fsExtra } from '@umijs/utils';
 import { MajConfig } from '../utils/getConfig';
 import { Paths } from '../utils/path';
-import { Module } from './Module';
+import { IInstallDeps, Module } from './Module';
 export class Api {
   public paths: Paths;
   public name: string = '';
@@ -53,5 +53,31 @@ export class Api {
         return mod.getMakoPlugin();
       })
       .filter(Boolean) as JsHooks[];
+  }
+  getInstallDependencies() {
+    const result: IInstallDeps = {};
+
+    this.getModules()
+      .map((mod) => {
+        return mod.getInstallDependencies();
+      })
+      .filter(Boolean)
+      .forEach((item) => {
+        if (item.dependencies) {
+          result.dependencies = [
+            ...new Set([...(result.dependencies || []), ...item.dependencies]),
+          ];
+        }
+        if (item.devDependencies) {
+          result.devDependencies = [
+            ...new Set([
+              ...(result.devDependencies || []),
+              ...item.devDependencies,
+            ]),
+          ];
+        }
+      });
+
+    return result;
   }
 }

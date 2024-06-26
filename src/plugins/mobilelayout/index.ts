@@ -60,4 +60,9 @@ export default class MobileLayout extends Module {
       content: `export type { NavBarProps, TitleListItem, NavBarListItem, TabBarProps, TabBarListItem, } from './AlitaLayout';`,
     });
   }
+  getInstallDependencies() {
+    return {
+      dependencies: ['antd-mobile-icons', 'antd-mobile'],
+    };
+  }
 }

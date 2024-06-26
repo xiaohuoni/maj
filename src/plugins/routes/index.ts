@@ -50,4 +50,9 @@ export default class Routes extends Module {
           `,
     });
   }
+  getInstallDependencies() {
+    return {
+      dependencies: ['react-router-dom'],
+    };
+  }
 }

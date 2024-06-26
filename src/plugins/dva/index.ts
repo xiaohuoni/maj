@@ -217,4 +217,9 @@ ${models
       context: {},
     });
   }
+  getInstallDependencies() {
+    return {
+      dependencies: ['dva-umi-lib'],
+    };
+  }
 }
