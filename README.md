@@ -1,6 +1,6 @@
 # Maj (WIP：Something that looks like umi@5)
 
-A React Framework base by @umijs/mako. Maj is a cutting-edge framework for building web applications using Mako. With its seamless integration of Mako's performance and React's declarative UI, Maj provides developers with a powerful and efficient toolset for creating robust and scalable web applications.
+A React Framework base by [@umijs/mako](https://github.com/umijs/mako). Maj is a cutting-edge framework for building web applications using Mako. With its seamless integration of Mako's performance and React's declarative UI, Maj provides developers with a powerful and efficient toolset for creating robust and scalable web applications.
 
 ## Getting Started
 
